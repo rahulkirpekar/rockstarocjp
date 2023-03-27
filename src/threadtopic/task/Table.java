@@ -1,18 +1,22 @@
 package threadtopic.task;
 public class Table 
 {
+	// synchronized - ThreadSafe
 	public void printTable(int no) 
 	{
-		for (int i = 1; i <=10; i++) 
+		synchronized (this) 
 		{
-			try 
+			for (int i = 1; i <=10; i++) 
 			{
-				Thread.sleep(500);
-			} catch (InterruptedException e) 
-			{
-				e.printStackTrace();
+				try 
+				{
+					Thread.sleep(500);
+				} catch (InterruptedException e) 
+				{
+					e.printStackTrace();
+				}
+				System.out.println(	Thread.currentThread().getName() +"---"+ Thread.currentThread().getId() +"---"+no + " " +i + " " +(no*i));
 			}
-			System.out.println(	Thread.currentThread().getName() +"---"+ Thread.currentThread().getId() +"---"+no + " " +i + " " +(no*i));
 		}
 	}
 }
